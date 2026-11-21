@@ -1,18 +1,12 @@
-"""读取资料并核对表头、行宽和基础引用。"""
+"""读取资料并核对表头、行宽和基础引用（兼容入口，实现见 yanxue.book）。"""
 import argparse
 import json
+import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-def load(path):
-    data = json.loads(Path(path).read_text(encoding="utf-8"))
-    index = {}
-    for name, table in data["tables"].items():
-        fields = table["fields"]
-        if not fields or len(fields) != len(set(fields)) or any(len(row) != len(fields) for row in table["rows"]):
-            raise ValueError(f"字段不匹配：{name}")
-        index[name] = [dict(zip(fields, row)) for row in table["rows"]]
-    return index
+from yanxue.book import load  # noqa: E402
 
 
 def main():
