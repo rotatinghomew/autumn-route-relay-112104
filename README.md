@@ -9,7 +9,7 @@
 - `groups`：需求按团；state 区分已结束、提前结束、等待和观察未满。 列：`group`, `day`, `version`, `origin`, `size`, `rest_min`, `state`。
 - `stations`：group_choices 为时空可能匹配的团；known_seq 为获知顺序。 列：`ref`, `group_choices`, `station`, `in_at`, `out_at`, `known_seq`。
 - `services`：走到本场地所需的最短时间。 列：`version`, `station`, `start`, `end`, `walk_min`。
-- `offers`：同名 slot 表示同一实际场次。 列：`option`, `slot`, `time`, `capacity`, `eligible_groups`。
+- `offers`：同名 slot 表示同一实际场次，另日场次不能承接本日。 列：`option`, `slot`, `day`, `time`, `capacity`, `eligible_groups`。
 - `notices`：accepted 为团长确实确认的替代；空表示没有确认。 列：`notice`, `group`, `slot`, `size`, `alternate`, `accepted`, `seq`。
 
 ## 检视
